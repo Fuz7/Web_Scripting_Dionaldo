@@ -1,0 +1,12 @@
+# Instructions
+- Go To frontend directory
+- run npm install
+- run npm run dev
+- open localhost:3000
+- open another terminal 
+- go to backend directory
+- run composer install
+- run php artisan migrate
+- if it errors on the run make sure to have potsgres and the correct username and password in the .env of backend
+- run php artisan serve
+- check it in localhost:3000
