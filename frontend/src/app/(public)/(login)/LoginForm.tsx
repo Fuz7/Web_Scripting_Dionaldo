@@ -26,7 +26,7 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
     rememberMe: false,
   });
@@ -47,7 +47,7 @@ export function LoginForm() {
     setErrors({});
     setLoading(true);
     await login({
-      email: formData.email,
+      username: formData.username,
       password: formData.password,
       remember: formData.rememberMe,
       setErrors,
@@ -99,13 +99,13 @@ export function LoginForm() {
             <div className="relative group">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-slate-400 group-focus-within:text-primary transition-colors duration-200" />
               <Input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="Email address"
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="username"
+                placeholder="Username"
                 className="pl-12 h-12 bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 rounded-lg ring-0 focus:border-primary focus:ring-1 focus:ring-primary text-slate-900 dark:text-white"
-                value={formData.email}
+                value={formData.username}
                 onChange={handleChange}
                 required
               />
@@ -168,12 +168,6 @@ export function LoginForm() {
                   Remember me
                 </Label>
               </div>
-              <Link
-                href="/forgot-password"
-                className="text-sm text-primary hover:text-primary/80 hover:underline transition-colors"
-              >
-                Forgot password?
-              </Link>
             </div>
 
             <Button
@@ -197,7 +191,7 @@ export function LoginForm() {
           </form>
           <div className="mt-6 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href={"/register"} className="underline underline-offset-2">
+            <Link href={"/register"} className="hover:underline underline-offset-2">
               Sign Up
             </Link>
           </div>

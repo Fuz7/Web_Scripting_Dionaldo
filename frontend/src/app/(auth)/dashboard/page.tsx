@@ -3,7 +3,8 @@
 import { useAuth } from "@/hooks/auth";
 
 export default function Home() {
-  const { logout } = useAuth();
+  const { logout,user } = useAuth();
+  console.log(user)
   return (
     <>
       <div className="text-5xl">Welcome</div>

@@ -21,15 +21,26 @@ class RegisteredUserController extends Controller
     public function store(Request $request): Response
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'full_name' => ['required', 'string', 'max:255'],
+            'username'  => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'gender'    => ['string'],
+            'hobbies'   => ['array'],
+            'hobbies.*' => ['string'], // each hobby must be a string
+            'country'   => ['nullable', 'string', 'max:255'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'full_name' => $request->full_name,
+            'username'  => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->string('password')),
+            'gender'    => $request->gender,
+            'hobbies'   => $request->hobbies, // array → JSON column
+            'country'   => $request->country,
+
+
         ]);
 
         event(new Registered($user));
